@@ -1,0 +1,3 @@
+rootProject.name = "ml-poc"
+include ':app'
+include ':customcarousel'
