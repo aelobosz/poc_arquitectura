@@ -1,4 +1,4 @@
-https://img.shields.io/static/v1?label=kotlinlang&message=architecture-sample&color=15a2f5&logo=kotlin
+![Kotlin](https://img.shields.io/static/v1?label=kotlinlang&message=architecture-sample&color=15a2f5&logo=kotlin)
 
 ## Sample Clean architecture
 The app in this project contains clean architecture sample module.
