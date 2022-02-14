@@ -2,6 +2,7 @@ package com.example.customcarousel.presentation.carousel
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,6 +11,7 @@ import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.savedstate.findViewTreeSavedStateRegistryOwner
 import com.bumptech.glide.Glide
 import com.example.customcarousel.R
+import com.example.customcarousel.databinding.MyCustomViewBinding
 import com.example.customcarousel.di.factory.ViewModelFactory
 import com.example.customcarousel.di.locator.ServiceLocator
 import com.example.customcarousel.di.locator.lazyLocate
@@ -47,6 +49,13 @@ class CarouselView : FrameLayout {
     private var scope: CoroutineScope? = null
     private var serviceLocator = ServiceLocator(appModule)
     private val printUseCase: PrintUseCase by lazyLocate(serviceLocator)
+    private var binding = MyCustomViewBinding
+        .inflate(
+            LayoutInflater.from(context),
+            this,
+            true
+        )
+
     private val viewModel by lazy {
         val factory = ViewModelFactory(
             printUseCase = printUseCase,
@@ -55,8 +64,8 @@ class CarouselView : FrameLayout {
         ViewModelProvider(findViewTreeViewModelStoreOwner()!!, factory)
             .get(CarouselViewModel::class.java)
     }
-    private val textView: TextView by lazy { findViewById(R.id.delta) }
-    private val imageView: ImageView by lazy { findViewById(R.id.imageView) }
+    private val textView: TextView by lazy { binding.delta }
+    private val imageView: ImageView by lazy { binding.imageView }
 
     private fun initialize(context: Context) {
         inflate(context, R.layout.my_custom_view, this)
